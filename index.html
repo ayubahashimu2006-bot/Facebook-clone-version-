@@ -5,168 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Social Login</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif; }
-
-    body {
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    :root{
+      --blue:#1877f2;
+      --blue-hover:#166fe5;
+      --green:#42b72a;
+      --green-hover:#36a420;
+      --bg:#f0f2f5;
+      --text:#1c1e21;
+      --muted:#65676b;
+      --card:#ffffff;
+      --border:#dddfe2;
+      --focus:#e7f3ff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    body{
+      background:var(--bg);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--text);
+    }
+    .wrap{
+      width:min(980px,92vw);
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:56px;
+      align-items:center;
+    }
+    .brand h1{
+      color:var(--blue);
+      font-size:56px;
+      line-height:1;
+      letter-spacing:-1px;
+      margin-bottom:12px;
+    }
+    .brand p{
+      font-size:24px;
+      max-width:460px;
     }
 
-    .container {
-      display: flex;
-      gap: 60px;
-      align-items: center;
+    .card{
+      background:var(--card);
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
+      padding:16px;
+      width:360px;
+      justify-self:end;
+    }
+    .field{
+      position:relative;
+      margin-bottom:10px;
+    }
+    .field input{
+      width:100%;
+      padding:14px 12px;
+      border:1px solid var(--border);
+      border-radius:6px;
+      font-size:16px;
+      transition:border .15s, box-shadow .15s;
+      background:#fff;
+    }
+    .field input:focus{
+      outline:none;
+      border-color:var(--blue);
+      box-shadow:0 0 0 2px var(--focus);
     }
 
-    .left {
-      max-width: 400px;
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:6px;
+      padding:14px;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .04s ease, background .15s ease;
+    }
+    .btn:active{ transform:translateY(1px); }
+
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      margin-top:6px;
+    }
+    .btn-primary:hover{ background:var(--blue-hover); }
+
+    .link{
+      text-align:center;
+      margin:14px 0;
+      font-size:14px;
+    }
+    .link a{
+      color:var(--blue);
+      text-decoration:none;
+    }
+    .link a:hover{ text-decoration:underline; }
+
+    .divider{
+      height:1px;
+      background:var(--border);
+      margin:16px 0 18px;
     }
 
-    .left h1 {
-      color: #1877f2;
-      font-size: 56px;
-      font-weight: bold;
+    .btn-success{
+      display:block;
+      width:70%;
+      margin:0 auto;
+      text-align:center;
+      background:var(--green);
+      color:#fff;
+      text-decoration:none;
+    }
+    .btn-success:hover{ background:var(--green-hover); }
+
+    .meta{
+      text-align:center;
+      margin-top:18px;
+      font-size:12px;
+      color:var(--muted);
     }
 
-    .left p {
-      font-size: 20px;
-      margin-top: 10px;
+    /* subtle footer line to keep it non-deceptive */
+    .disclaimer{
+      text-align:center;
+      margin-top:10px;
+      font-size:11px;
+      color:#8a8d91;
     }
 
-    .right {
-      background: #fff;
-      padding: 20px;
-      width: 350px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 8px 0;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    input:focus {
-      outline: none;
-      border: 1px solid #1877f2;
-      box-shadow: 0 0 0 2px #e7f3ff;
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 14px;
-      background: #1877f2;
-      border: none;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .login-btn:hover {
-      background: #166fe5;
-    }
-
-    .forgot {
-      text-align: center;
-      margin: 12px 0;
-    }
-
-    .forgot a {
-      text-decoration: none;
-      color: #1877f2;
-      font-size: 14px;
-    }
-
-    hr {
-      margin: 20px 0;
-      border: 0.5px solid #ddd;
-    }
-
-    .create-btn {
-      display: block;
-      margin: auto;
-      background: #42b72a;
-      color: white;
-      padding: 12px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: bold;
-      width: 70%;
-      text-decoration: none;
-    }
-
-    .create-btn:hover {
-      background: #36a420;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #777;
-    }
-
-    .notice {
-      font-size: 11px;
-      color: #999;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-        text-align: center;
+    @media (max-width:900px){
+      .wrap{
+        grid-template-columns:1fr;
+        gap:24px;
+        text-align:center;
       }
-
-      .left h1 {
-        font-size: 40px;
-      }
+      .card{ justify-self:center; }
+      .brand h1{ font-size:44px; }
+      .brand p{ font-size:20px; margin:0 auto; }
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="left">
+  <div class="wrap">
+    <div class="brand">
       <h1>facebook</h1>
       <p>Connect with friends and the world around you.</p>
     </div>
 
-    <div class="right">
+    <div class="card">
       <form onsubmit="return false;">
-        <input type="text" placeholder="Email or phone number" />
-        <input type="password" placeholder="Password" />
+        <div class="field">
+          <input type="text" placeholder="Email or phone number" autocomplete="username" />
+        </div>
+        <div class="field">
+          <input type="password" placeholder="Password" autocomplete="current-password" />
+        </div>
 
-        <button class="login-btn">Log In</button>
+        <button class="btn btn-primary">Log In</button>
 
-        <div class="forgot">
+        <div class="link">
           <a href="#">Forgotten password?</a>
         </div>
 
-        <hr>
+        <div class="divider"></div>
 
-        <a href="#" class="create-btn">Create New Account</a>
+        <a href="#" class="btn btn-success">Create New Account</a>
 
-        <div class="notice">
-          Educational demo interface only (no data is collected)
+        <div class="meta">
+          Create a Page for a celebrity, brand or business.
+        </div>
+
+        <div class="disclaimer">
+          Demo interface (no data collection)
         </div>
       </form>
     </div>
   </div>
-
-  <div class="footer">
-    Demo Project • Cybersecurity Awareness
-  </div>
-
 </body>
 </html>
