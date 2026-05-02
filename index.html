@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Security Awareness Demo</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h2 {
+      color: #1877f2;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .warning {
+      font-size: 12px;
+      color: red;
+      margin-top: 10px;
+    }
+
+    .output {
+      margin-top: 15px;
+      font-size: 14px;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Login Portal</h2>
+
+  <input type="text" id="user" placeholder="Email or Phone">
+  <input type="password" id="pass" placeholder="Password">
+
+  <button onclick="simulate()">Log In</button>
+
+  <div class="warning">
+    ⚠ Cybersecurity Training Demo – Do NOT use real credentials
+  </div>
+
+  <div class="output" id="output"></div>
+</div>
+
+<script>
+function simulate() {
+  let user = document.getElementById("user").value;
+  let pass = document.getElementById("pass").value;
+
+  document.getElementById("output").innerHTML =
+    "Captured (Simulation Only):<br>Email/Phone: " + user +
+    "<br>Password: " + pass;
+
+  console.log("Simulated Capture:", user, pass);
+}
+</script>
+
+</body>
+</html>
